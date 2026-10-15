@@ -12,46 +12,52 @@ import {
   ArrowRight,
   ArrowUpRight,
   Award,
-  Briefcase,
   CheckCircle2,
   Clock,
-  FileText,
-  Handshake,
-  Landmark,
+  Compass,
+  FileCheck2,
+  Gavel,
+  Lock,
   Mail,
   MapPin,
   Menu,
   Phone,
   Scale,
+  Shield,
+  ShieldAlert,
   ShieldCheck,
   Sparkles,
   Star,
-  Users,
   X,
+  Zap,
 } from "lucide-react";
 import GlowingButton from "./components/GlowingButton";
 
-const WHATSAPP_NUMBER = "5537991642670";
-const PHONE_DISPLAY = "(37) 99164-2670";
-const EMAIL_CONTACT = "contato@giseleferreira.adv.br";
-const INSTAGRAM_URL = "https://www.instagram.com/gisele.fferreiraadv/";
-const INSTAGRAM_HANDLE = "@gisele.fferreiraadv";
+const WHATSAPP_NUMBER = "5532999097028";
+const PHONE_DISPLAY = "(32) 99909-7028";
+const EMAIL_CONTACT = "contato@robertaveiga.adv.br";
+const INSTAGRAM_URL = "https://www.instagram.com/ravgms.adv";
+const INSTAGRAM_HANDLE = "@ravgms.adv";
 
 const ADDRESS_TEXT =
-  "R. Europa, 176 - Belvedere, Nova Serrana - MG, 35526-720, Brasil";
+  "R. Floripes Maria de Jesus, nº 15 – Loja 1 - Centro, Rio Pomba - MG, 36180-000, Brasil";
+const ADDRESS_LANDMARKS =
+  "Esquina com a Rua João Marcelino · Ao lado do LABCLIN · Em frente à AUTOESCOLA RIO POMBA";
 const GOOGLE_MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=R.+Europa,+176+-+Belvedere,+Nova+Serrana+-+MG,+35526-720";
+  "https://www.google.com/maps/search/?api=1&query=R.+Floripes+Maria+de+Jesus,+15+-+Centro,+Rio+Pomba+-+MG,+36180-000";
 
-const LOGO_SRC = "/logo-gisele-ferreira.png";
-const FOTO_HERO_SRC = "/dra-gisele-ferreira-mesa.png";
-const FOTO_SOBRE_SRC = "/dra-gisele-ferreira-perfil.png";
+const LOGO_SRC = "/logo.png";
+const LOGO_LIGHT_SRC = "/logo-light.png";
+const FOTO_SOBRE_SRC = "/roberta-veiga.png";
+const FOTO_PORTRAIT_SRC = "/roberta-portrait.png";
+const FOTO_ENDERECO_SRC = "/escritorio-endereco.png";
 
 function getWhatsAppUrl(
   message?: string,
   number: string = WHATSAPP_NUMBER
 ) {
   const defaultText =
-    "Olá, Dra. Gisele Ferreira! Gostaria de consultar sobre meus direitos e agendar um atendimento.";
+    "Olá, Dra. Roberta Veiga! Gostaria de uma orientação jurídica criminal sobre meu caso.";
   return `https://wa.me/${number}?text=${encodeURIComponent(
     message || defaultText
   )}`;
@@ -151,202 +157,239 @@ const stagger: Variants = {
 interface PracticeArea {
   id: string;
   title: string;
-  icon: typeof Scale;
+  icon: React.ComponentType<{ size?: number; className?: string; strokeWidth?: number }>;
   tag: string;
   summary: string;
   details: string;
   topics: string[];
   whatsAppText: string;
+  isSpecialty?: boolean;
 }
 
 const practiceAreas: PracticeArea[] = [
   {
-    id: "direito-de-familia-sucessoes",
-    title: "Direito de Família & Sucessões",
-    icon: Users,
-    tag: "Divórcio · Inventários · Partilha · Pensão · Guarda",
+    id: "execucao-penal-estrategica",
+    title: "Execução Penal & Liberdade Antecipada",
+    icon: UnlockIcon,
+    tag: "Especialidade Principal · Progressão · Remição · Livramento",
     summary:
-      "Apoio jurídico acolhedor e estratégico em momentos decisivos, garantindo a proteção dos seus entes queridos e a preservação justa do patrimônio familiar.",
+      "Acompanhamento analítico e diário do cumprimento da pena para assegurar que nenhum dia de direito seja desrespeitado e antecipar a soltura do apenado.",
     details:
-      "Demandas familiares exigem sensibilidade humana aliada a absoluto rigor técnico. A Dra. Gisele Ferreira atua na condução de inventários extrajudiciais em cartório com rapidez, partilhas amigáveis, divórcios consensuais e litigiosos, fixação de pensão alimentícia e guarda, sempre priorizando o equilíbrio, o respeito mútuo e a segurança dos filhos e herdeiros.",
+      "A execução penal vai muito além de simples pedidos burocráticos. É sobre estratégia processual, recálculo criterioso de penas para sanar erros de guias prisionais, pedidos urgentes de progressão de regime (fechado para semiaberto e semiaberto para aberto), livramento condicional e remição por trabalho, estudo e leitura. Atuamos com dedicação diária para que o apenado conquiste sua liberdade no exato momento devido por lei.",
     topics: [
-      "Inventário extrajudicial em cartório rápido, econômico e sem burocracia",
-      "Inventário judicial contencioso e partilha complexa de patrimônio",
-      "Divórcio consensual e litigioso com divisão equilibrada de bens",
-      "Fixação, execução e revisão de alimentos (pensão alimentícia)",
-      "Regulamentação de guarda, convivência familiar e alienação parental",
-      "Planejamento sucessório, testamentos e união estável",
+      "Progressão de regime de cumprimento de pena (fechado, semiaberto e aberto)",
+      "Livramento condicional com análise antecipada de todos os requisitos",
+      "Remição de pena por estudo, trabalho, leitura e aprovações no ENEM/ENCCEJA",
+      "Saídas temporárias, indulto humanitário e comutação de pena",
+      "Defesa técnica em Processo Administrativo Disciplinar (PAD / Falta Grave)",
+      "Retificação minuciosa de Guia de Recolhimento e eliminação de erros de cálculo",
     ],
     whatsAppText:
-      "Olá, Dra. Gisele Ferreira! Gostaria de uma consultoria em Direito de Família / Inventário / Divórcio.",
+      "Olá, Dra. Roberta Veiga! Gostaria de uma consultoria especializada em Execução Penal / Progressão de Regime / Liberdade.",
+    isSpecialty: true,
   },
   {
-    id: "direito-previdenciario-inss",
-    title: "Direito Previdenciário & INSS",
-    icon: Landmark,
-    tag: "Aposentadorias · BPC/LOAS · Auxílios · Recursos",
+    id: "plantao-criminal-24h-flagrante",
+    title: "Plantão Criminal 24h & Prisão em Flagrante",
+    icon: Zap,
+    tag: "Plantão 24h · Delegacia · Audiência de Custódia · Urgência",
     summary:
-      "Orientação e representação combativa perante o INSS e na Justiça Federal para obtenção, revisão e restabelecimento de benefícios previdenciários indeferidos.",
+      "Atendimento imediato e combativo em delegacias e unidades prisionais para proteger garantias constitucionais e postular a liberdade imediata.",
     details:
-      "Muitos trabalhadores têm benefícios negados indevidamente por falhas cadastrais ou perícias apressadas. A Dra. Gisele Ferreira realiza planejamento previdenciário minucioso, analisando cada período contributivo no CNIS para destravar aposentadorias no valor máximo devido, auxílios por incapacidade e benefícios assistenciais como o BPC/LOAS.",
+      "As primeiras horas após a abordagem policial são determinantes para o desfecho do processo. Dra. Roberta Veiga atua em regime de plantão penal 24 horas, acompanhando presencialmente oitivas e depoimentos em delegacias, verificando a regularidade do flagrante e sustentando com vigor na audiência de custódia pela concessão de liberdade provisória com ou sem fiança ou relaxamento da prisão ilegal.",
     topics: [
-      "Concessão e planejamento de aposentadoria por idade, tempo e especial",
-      "Requerimento e recurso para BPC/LOAS (idosos e pessoas com deficiência)",
-      "Auxílio por incapacidade temporária (auxílio-doença) e aposentadoria por invalidez",
-      "Pensão por morte, auxílio-reclusão e salário-maternidade",
-      "Ações judiciais para reverter indeferimentos e negativas indevidas do INSS",
-      "Cálculo minucioso de tempo de contribuição e retificação de CNIS",
+      "Plantão emergencial 24 horas para atendimento presencial imediato",
+      "Acompanhamento em flagrantes, interrogatórios e termos circunstanciados na delegacia",
+      "Atuação combativa na Audiência de Custódia com pedido de liberdade provisória",
+      "Relaxamento imediato de prisão em flagrante arbitrária ou ilegal",
+      "Orientação preventiva aos investigados e comunicação contínua aos familiares",
+      "Fiscalização ininterrupta da integridade física e dos direitos do custodiado",
     ],
     whatsAppText:
-      "Olá, Dra. Gisele! Preciso de orientação jurídica sobre benefícios do INSS / Aposentadoria.",
+      "Olá, Dra. Roberta! Preciso de atendimento urgente no Plantão Criminal 24h (Flagrante / Delegacia).",
+    isSpecialty: true,
   },
   {
-    id: "direito-civil-contratos-estrategicos",
-    title: "Direito Civil & Contratos Estratégicos",
-    icon: FileText,
-    tag: "Contratos · Indenizações · Cobranças · Notificações",
+    id: "revogacao-de-preventiva-habeas-corpus",
+    title: "Revogação de Preventiva & Habeas Corpus",
+    icon: ShieldAlert,
+    tag: "Habeas Corpus · Prisão Domiciliar · Medidas Cautelares",
     summary:
-      "Segurança jurídica na elaboração, revisão e rescisão de contratos, além de ações de responsabilidade civil, indenizações e cobranças de créditos.",
+      "Ações judiciais enérgicas perante juizados de 1º grau, TJMG, STJ e STF contra prisões preventivas desnecessárias, ilegais ou desproporcionais.",
     details:
-      "Um contrato bem estruturado previne perdas financeiras e resguarda seu patrimônio. Dra. Gisele Ferreira oferece assessoria preventiva e contenciosa minuciosa, assegurando clareza cláusula por cláusula, garantias contratuais sólidas e resolução eficaz de inadimplementos e prejuízos materiais.",
+      "A prisão antes da condenação definitiva é medida excepcionalíssima no ordenamento jurídico brasileiro. Atuamos com pedidos fundamentados de revogação de prisão preventiva demonstrando a ausência dos requisitos do art. 312 do CPP, impetramos Habeas Corpus com pedido liminar em instâncias superiores e pleiteamos prisão domiciliar para mães, chefes de família ou pessoas com enfermidades graves.",
     topics: [
-      "Elaboração e revisão criteriosa de contratos civis, imobiliários e comerciais",
-      "Ações indenizatórias por descumprimento de obrigações e quebra de contrato",
-      "Execução e cobrança judicial e extrajudicial de títulos de crédito e dívidas",
-      "Notificações extrajudiciais formais para constituir em mora e resguardar direitos",
-      "Ações possessórias, usucapião e regularização imobiliária em Nova Serrana e região",
-      "Consultoria preventiva para evitar litígios prolongados e desgastantes",
+      "Pedido de revogação de prisão preventiva com substituição por medidas cautelares",
+      "Impetração célere de Habeas Corpus com pedido liminar perante o TJMG, STJ e STF",
+      "Substituição de prisão preventiva por prisão domiciliar humanitária",
+      "Alegação de excesso de prazo na instrução e combate a constrangimentos ilegais",
+      "Sustentação oral presencial e por videoconferência nos Tribunais de Justiça",
+      "Recursos em Habeas Corpus perante os Tribunais Superiores em Brasília",
     ],
     whatsAppText:
-      "Olá, Dra. Gisele! Gostaria de consultoria jurídica em Direito Civil / análise contratual.",
+      "Olá, Dra. Roberta! Gostaria de orientações sobre pedido de Revogação de Prisão Preventiva / Habeas Corpus.",
   },
   {
-    id: "direito-do-consumidor-reparacao-de-danos",
-    title: "Direito do Consumidor & Reparação de Danos",
+    id: "defesa-em-inqueritos-e-processos-criminais",
+    title: "Defesa em Inquéritos & Processos Criminais",
+    icon: Gavel,
+    tag: "Investigação · Crimes Patrimoniais · Lei de Drogas · Júri",
+    summary:
+      "Estratégia defensiva de excelência, do início do inquérito policial até a sentença final, com análise técnica rigorosa e sustentação combativa.",
+    details:
+      "Cada acusação criminal exige uma teoria do caso personalizada e técnica. Atuamos na defesa de investigados e réus em crimes contra o patrimônio (furto, roubo, estelionato), crimes da Lei de Drogas (teses de desclassificação para porte e aplicação do tráfico privilegiado), crimes contra a pessoa e rito do Tribunal do Júri, assegurando contraditório pleno e ampla defesa.",
+    topics: [
+      "Defesa técnica em Inquéritos Policiais e investigações do Ministério Público",
+      "Atuação combativa em crimes da Lei de Drogas (teses defensivas e desclassificação)",
+      "Defesa em crimes patrimoniais (furto, roubo, receptação, apropriação indébita)",
+      "Apresentação de Resposta à Acusação com arguição de preliminares e nulidades",
+      "Participação incisiva em Audiências de Instrução e Julgamento com inquirição de testemunhas",
+      "Acordo de Não Persecução Penal (ANPP), transação penal e suspensão condicional do processo",
+    ],
+    whatsAppText:
+      "Olá, Dra. Roberta! Preciso de defesa técnica para um inquérito policial / processo criminal.",
+  },
+  {
+    id: "crimes-digitais-fraudes-medicina-legal",
+    title: "Crimes Digitais & Medicina Legal",
     icon: ShieldCheck,
-    tag: "SPC/Serasa · Danos Morais · Fraudes · Cobranças Abusivas",
+    tag: "Golpes Virtuais · Perícias Técnicas · Cadeia de Custódia Forense",
     summary:
-      "Defesa incisiva contra abusos de empresas, negativações indevidas, golpes financeiros, fraudes bancárias e cobranças irregulares.",
+      "Atuação qualificada em delitos cibernéticos, fraudes eletrônicas e causas que exigem profundo domínio de perícia médica e científica.",
     details:
-      "Práticas abusivas de bancos, operadoras e fornecedores exigem uma postura jurídica ágil e firme. Atuamos com pedidos liminares para limpar seu nome imediatamente, anular cobranças fraudulentas (empréstimos consignados não contratados, fraudes do Pix) e pleitear indenizações justas por danos morais.",
+      "O avanço tecnológico e os métodos modernos de investigação demandam conhecimento técnico multidisciplinar. Dra. Roberta Veiga alia a prática penal a um estudo aprofundado em medicina legal e crimes digitais, atuando na verificação criteriosa da cadeia de custódia de dados eletrônicos apreendidos, na contestação de laudos periciais e na formulação de quesitos para peritos oficiais.",
     topics: [
-      "Exclusão liminar de inscrição indevida nos cadastros de SPC e Serasa",
-      "Indenização por danos morais decorrentes de negativação irregular e constrangimento",
-      "Ações contra fraudes financeiras, empréstimos não autorizados e golpes bancários",
-      "Cobranças indevidas de operadoras de telefonia, energia, água e bancos",
-      "Descumprimento de prazos e contratos de prestação de serviços",
-      "Restituição de valores cobrados indevidamente com repetição de indébito (em dobro)",
+      "Defesa em acusações de estelionato eletrônico, invasão de dispositivo e fraudes virtuais",
+      "Verificação rigorosa da conformidade e higidez da cadeia de custódia de provas digitais",
+      "Análise aprofundada de laudos de medicina legal, corpo de delito e necropsias",
+      "Elaboração de quesitos técnicos e indicação de assistentes periciais",
+      "Combate judicial a provas ilícitas obtidas sem autorização judicial específica",
+      "Assessoria jurídica a pessoas e empresas vítimas de extorsão ou golpes digitais",
     ],
     whatsAppText:
-      "Olá, Dra. Gisele! Gostaria de uma análise para um caso de direito do consumidor / cobrança indevida.",
+      "Olá, Dra. Roberta! Gostaria de consultoria sobre crimes digitais / análise de perícia técnica.",
   },
   {
-    id: "direito-trabalhista-relacoes-de-emprego",
-    title: "Direito Trabalhista & Relações de Emprego",
-    icon: Briefcase,
-    tag: "Rescisões · Horas Extras · Vínculo · Acidentes",
+    id: "revisao-criminal-recursos-superiores",
+    title: "Revisão Criminal & Recursos Superiores",
+    icon: FileCheck2,
+    tag: "Revisão de Sentença · Recurso de Apelação · STJ & STF",
     summary:
-      "Orientação e representação técnica para assegurar o respeito integral aos direitos trabalhistas e o recebimento justo de todas as verbas rescisórias.",
+      "Instrumentos processuais para desconstituir condenações injustas transitadas em julgado e recorrer a instâncias revisoras para correção de penas.",
     details:
-      "Atuamos na conferência criteriosa de verbas rescisórias, rescisão indireta em casos de descumprimento pelo empregador, cobrança de horas extras e adicionais devidos, além da reparação por danos decorrentes de acidentes e assédio no trabalho.",
+      "Mesmo após o trânsito em julgado da sentença condenatória, a justiça ainda pode ser restabelecida. Através da Ação de Revisão Criminal, fundada em novas provas, laudos contraditórios ou nulidades processuais insanáveis, buscamos a absolvição ou a drástica redução da pena do apenado, além de atuar no manejo de Recursos de Apelação, Recursos Especiais ao STJ e Recursos Extraordinários ao STF.",
     topics: [
-      "Cobrança integral de verbas rescisórias, férias, 13º e FGTS não depositado",
-      "Rescisão indireta do contrato de trabalho por justa causa do empregador",
-      "Horas extras, adicionais noturnos, de insalubridade e periculosidade não pagos",
-      "Reconhecimento de vínculo empregatício e anotação formal em carteira",
-      "Indenizações por acidentes de trabalho e doenças ocupacionais",
-      "Defesa e reparação por assédio moral e condições degradantes de trabalho",
+      "Ação de Revisão Criminal para anular sentença condenatória ou reduzir pena",
+      "Agravo em Execução Penal contra decisões indeferitórias do Juiz da VEC",
+      "Recurso de Apelação Criminal contra sentenças de mérito injustas",
+      "Recurso em Sentido Estrito (RESE) em decisões interlocutórias e pronúncia",
+      "Recurso Especial (STJ) e Recurso Extraordinário (STF) com peças de alto rigor formal",
+      "Unificação de penas em execuções concorrentes com cálculo favorável ao apenado",
     ],
     whatsAppText:
-      "Olá, Dra. Gisele! Gostaria de consultoria sobre meus direitos trabalhistas / rescisão.",
-  },
-  {
-    id: "resolucao-extrajudicial-acordos-ageis",
-    title: "Resolução Extrajudicial & Acordos Ágeis",
-    icon: Handshake,
-    tag: "Mediação Direta · Solução Rápida sem Processo",
-    summary:
-      "Negociação direta estratégica para resolver conflitos de forma célere, econômica e amigável, sem a lentidão e os custos de uma disputa judicial.",
-    details:
-      "Muitos dos melhores resultados jurídicos acontecem antes mesmo de acionar a Justiça. A postura conciliadora, técnica e assertiva da Dra. Gisele Ferreira permite obter acordos equilibrados, partilhas pacíficas e indenizações com máxima agilidade e economia emocional para o cliente.",
-    topics: [
-      "Negociação extrajudicial direta entre partes, empresas e instituições",
-      "Redação e homologação de termos de acordo com validade de título executivo",
-      "Mediação pacífica em litígios familiares, patrimoniais e contratuais",
-      "Notificações formais para viabilizar composição amigável célere",
-      "Economia expressiva de despesas processuais, custas cartorárias e anos de espera",
-      "Soluções personalizadas com total sigilo, privacidade e respeito mútuo",
-    ],
-    whatsAppText:
-      "Olá, Dra. Gisele! Preciso de auxílio para negociar e resolver um impasse de forma amigável e extrajudicial.",
+      "Olá, Dra. Roberta! Gostaria de analisar a viabilidade de uma Revisão Criminal ou recurso.",
   },
 ];
 
+function UnlockIcon({
+  size = 20,
+  className = "",
+  strokeWidth = 2,
+}: {
+  size?: number;
+  className?: string;
+  strokeWidth?: number;
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 9.9-1" />
+    </svg>
+  );
+}
+
 const clientReviews = [
   {
-    name: "Welton Ferreira",
-    reviewsCount: "Cliente Verificado · 3 avaliações",
-    date: "Google Meu Negócio · 7 meses atrás",
-    badge: "transparência & segurança",
+    name: "David Alexandre Teles Farina",
+    reviewsCount: "Local Guide · 10 avaliações · 7 fotos",
+    date: "Google Meu Negócio · Verificado",
+    badge: "expert em execução penal",
     content:
-      "Excelente profissional! Super atencioso, disponível e transparente em todas as fases do processo. Transmite muita segurança e conhecimento técnico. Recomendo de olhos fechados!",
+      "Dra. Roberta é uma expert em execução penal. Prestativa, empenhada, atenciosa e, sobretudo, humana. O seu foco é a liberdade antecipada do seu cliente, e percebo que é bem comum que ela consiga alcançar resultados exitosos além do esperado.",
   },
   {
-    name: "Keity Lorrany",
-    reviewsCount: "Cliente Verificada · 3 avaliações",
-    date: "Google Meu Negócio · 2 anos atrás",
+    name: "Katia Ghedini Mantovani",
+    reviewsCount: "Local Guide · 9 avaliações · 1 foto",
+    date: "Google Meu Negócio · Verificado",
+    badge: "criminalista renomada",
+    content:
+      "Dra Roberta é especialista na advocacia criminal, defendendo amplamente os direitos e interesses de seus clientes. É uma criminalista renomada e conhecida pela garra e comprometimento com a causa.",
+  },
+  {
+    name: "João Fidelis",
+    reviewsCount: "Cliente Verificado · 1 avaliação",
+    date: "Google Meu Negócio · Verificado",
+    badge: "conquista da liberdade",
+    content:
+      "Gostaria de agradecer, Dra pelo excelente trabalho, pela atenção e pelo tamanho desempenho que foi dado no meu caso e se hoje consegui minha liberdade eu agradeço a Deus e a Dra. Deus abençoe e tenha um ótimo dia!",
+  },
+  {
+    name: "Marlene Vieira",
+    reviewsCount: "Cliente Verificada · 1 avaliação",
+    date: "Google Meu Negócio · Verificado",
     badge: "trabalho impecável",
     content:
-      "Uma Advogada incrível muito precisa seu trabalho impecável atenciosa como sempre, recomendo sempre também 👏🏻👏🏻👏🏻",
+      "Seu trabalho foi impecável. A forma clara, atenta e responsável com que conduziu cada etapa fez toda a diferença. Parabéns pela competência e comprometimento. A melhor advogada de Rio Pomba.",
   },
   {
-    name: "saulo dias benicio",
-    reviewsCount: "Local Guide · 19 avaliações · 11 fotos",
-    date: "Google Meu Negócio · 1 mês atrás",
-    badge: "experiente no que faz",
-    content: "Experiente no que faz parabéns",
+    name: "Gabriel Lellis",
+    reviewsCount: "Cliente Verificado · 2 avaliações",
+    date: "Google Meu Negócio · Verificado",
+    badge: "confiança e clareza",
+    content:
+      "A Dra. Roberta prestou um atendimento excelente, sempre muito atenciosa, clara e profissional. Transmitiu confiança durante todo o processo e esclareceu todas as minhas dúvidas. Recomendo seu trabalho.",
   },
   {
-    name: "Kelly Cristina",
-    reviewsCount: "Cliente Verificada · 1 avaliação",
-    date: "Google Meu Negócio · 2 anos atrás",
-    badge: "atendimento acolhedor",
-    content: "Uma ótima advogada, atende super bem",
+    name: "Taís Nunes",
+    reviewsCount: "Cliente Verificada · 5 avaliações",
+    date: "Google Meu Negócio · Verificado",
+    badge: "ágil e dedicada",
+    content:
+      "Dra Roberta é um exemplo de profissional. Compreensiva e direta nas suas informações. Extremamente dedicada e ágil para resolver os problemas.",
   },
   {
-    name: "Gilmara Lopes",
-    reviewsCount: "Cliente Verificada · 1 avaliação",
-    date: "Google Meu Negócio · 2 anos atrás",
-    badge: "excelente trabalho",
-    content: "Ótima profissional, excelente trabalho",
+    name: "Jhonatan Botelho",
+    reviewsCount: "Cliente Verificado · 2 avaliações",
+    date: "Google Meu Negócio · Verificado",
+    badge: "honestidade e segurança",
+    content:
+      "Excelente trabalho. Roberta explica tudo com clareza, é honesta sobre os riscos e transmite confiança. Me senti ouvido e seguro para seguir com o caso quando necessário. Sem sombra de dúvidas, eu recomendo.",
   },
   {
-    name: "Jaqueline Oliveira",
-    reviewsCount: "Cliente Verificada · 3 avaliações",
-    date: "Google Meu Negócio · 2 anos atrás",
-    badge: "excelente profissional",
-    content: "Excelente profissional 👏🏽👏🏽",
+    name: "Joao Victor",
+    reviewsCount: "Cliente Verificado · 4 avaliações · 3 fotos",
+    date: "Google Meu Negócio · Verificado",
+    badge: "atendimento resolutivo",
+    content:
+      "Excelente profissional, pontual, resolutiva. Nunca fui tão bem atendido. Obrigado Dra. Roberta.",
   },
   {
-    name: "Vanessa Moreira",
-    reviewsCount: "Cliente Verificada · 2 avaliações · 6 fotos",
-    date: "Google Meu Negócio · 2 anos atrás",
-    badge: "100% dedicação",
-    content: "Maravilhoso dedicação 100%",
-  },
-  {
-    name: "Marylane Ferreira",
-    reviewsCount: "Cliente Verificada · 2 avaliações",
-    date: "Google Meu Negócio · 2 anos atrás",
-    badge: "confiança e ética",
-    content: "Excelente profissional.",
-  },
-  {
-    name: "Maurício Guedes Guedes",
-    reviewsCount: "Cliente Verificado · 4 avaliações",
-    date: "Google Meu Negócio · 2 anos atrás",
-    badge: "recomendo",
-    content: "Ótima advogada",
+    name: "Alline Cardoso",
+    reviewsCount: "Cliente Verificada · 5 avaliações · 2 fotos",
+    date: "Google Meu Negócio · Verificado",
+    badge: "rápida e eficiente",
+    content:
+      "A Dra Roberta é uma pessoa excepcional! Ajudou muito no meu processo! Rápida e extremamente eficiente!",
   },
 ];
 
@@ -404,23 +447,23 @@ export default function Home() {
   return (
     <MotionConfig reducedMotion="user">
       <main className="overflow-hidden bg-pearl text-ink">
-        {/* Navigation Bar - Luxury Dark Wine with Rose Gold Accents */}
-        <header className="sticky top-0 z-40 border-b border-brand-800/40 bg-brand-950/95 backdrop-blur-xl">
-          <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between gap-5 px-5 sm:h-[82px] sm:px-8 lg:px-12">
+        {/* Navigation Bar - Dark Obsidian Wine with Warm Gold Accent */}
+        <header className="sticky top-0 z-40 border-b border-brand-900/60 bg-brand-950/95 backdrop-blur-xl">
+          <div className="mx-auto flex h-[88px] max-w-7xl items-center justify-between gap-5 px-5 sm:h-[98px] lg:h-[108px] sm:px-8 lg:px-12">
             <a
               href="#inicio"
-              aria-label="Gisele Ferreira Advogada — Início"
+              aria-label="Dra. Roberta Veiga Advocacia — Início"
               onClick={closeMenu}
-              className="flex items-center gap-3 transition-opacity hover:opacity-90"
+              className="flex items-center gap-3 transition-opacity hover:opacity-95"
             >
               <Image
-                src={LOGO_SRC}
-                width={1536}
-                height={1024}
-                alt="Gisele Ferreira Advogada - Logotipo Oficial"
+                src={LOGO_LIGHT_SRC}
+                width={1024}
+                height={402}
+                alt="Dra. Roberta Veiga - Advogada Criminalista - OAB/MG 210.863"
                 priority
                 loading="eager"
-                className="h-[56px] w-auto object-contain sm:h-[64px]"
+                className="h-[68px] w-auto object-contain sm:h-[82px] lg:h-[94px]"
               />
             </a>
 
@@ -432,19 +475,19 @@ export default function Home() {
                 Início
               </a>
               <a className="nav-link" href="#sobre">
-                Sobre a Advogada
+                Sobre a Roberta
+              </a>
+              <a className="nav-link" href="#execucao-penal">
+                Execução Penal
               </a>
               <a className="nav-link" href="#atuacao">
                 Áreas de Atuação
               </a>
-              <a className="nav-link" href="#diferenciais">
-                Por que Escolher?
-              </a>
               <a className="nav-link" href="#avaliacoes">
-                Avaliações (4,9 ★)
+                Avaliações (5,0 ★)
               </a>
               <a className="nav-link" href="#contato">
-                Contato & Sede
+                Nova Sede & Plantão
               </a>
             </nav>
 
@@ -453,38 +496,38 @@ export default function Home() {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Instagram Gisele Ferreira Advogada"
-                className="grid size-10 place-items-center rounded-full border border-gold-300/30 text-gold-300 transition-all hover:border-gold-300 hover:bg-brand-900 hover:text-white"
-                title="Instagram @gisele.fferreiraadv"
+                aria-label="Instagram Dra. Roberta Veiga"
+                className="grid size-10 place-items-center rounded-full border border-gold-400/35 text-gold-400 transition-all hover:border-gold-300 hover:bg-brand-900 hover:text-white"
+                title="Instagram @ravgms.adv"
               >
                 <InstagramIcon size={16} />
               </a>
               <a
                 href={`tel:+${WHATSAPP_NUMBER}`}
-                aria-label="Ligar para a Dra. Gisele Ferreira"
-                className="grid size-10 place-items-center rounded-full border border-gold-300/30 text-gold-300 transition-all hover:border-gold-300 hover:bg-brand-900 hover:text-white"
-                title={`Ligar: ${PHONE_DISPLAY}`}
+                aria-label="Ligar para o Plantão Penal da Dra. Roberta Veiga"
+                className="grid size-10 place-items-center rounded-full border border-gold-400/35 text-gold-400 transition-all hover:border-gold-300 hover:bg-brand-900 hover:text-white"
+                title={`Plantão 24h: ${PHONE_DISPLAY}`}
               >
                 <Phone size={16} />
               </a>
               <a
-                href={getWhatsAppUrl()}
+                href={getWhatsAppUrl("Olá, Dra. Roberta! Gostaria de falar com o plantão criminal.")}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="WhatsApp Dra. Gisele Ferreira"
-                className="grid size-10 place-items-center rounded-full border border-gold-300/30 text-gold-300 transition-all hover:border-gold-300 hover:bg-brand-900 hover:text-white"
+                aria-label="WhatsApp Dra. Roberta Veiga"
+                className="grid size-10 place-items-center rounded-full border border-gold-400/35 text-gold-400 transition-all hover:border-gold-300 hover:bg-brand-900 hover:text-white"
                 title="Atendimento no WhatsApp"
               >
                 <WhatsAppIcon size={18} />
               </a>
               <GlowingButton
-                href={getWhatsAppUrl()}
+                href={getWhatsAppUrl("Olá, Dra. Roberta Veiga! Gostaria de consultar sobre meu caso no plantão penal.")}
                 target="_blank"
                 size="sm"
                 variant="burgundy"
                 className="rounded-full shadow-sm"
               >
-                Falar no WhatsApp <ArrowUpRight size={14} />
+                Plantão 24h WhatsApp <ArrowUpRight size={14} />
               </GlowingButton>
             </div>
 
@@ -493,7 +536,7 @@ export default function Home() {
               aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
-              className="grid size-11 place-items-center rounded-full border border-gold-300/30 text-gold-300 lg:hidden"
+              className="grid size-11 place-items-center rounded-full border border-gold-400/35 text-gold-300 lg:hidden"
               onClick={() => setMenuOpen((open) => !open)}
             >
               {menuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -509,16 +552,16 @@ export default function Home() {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.22 }}
-                className="overflow-hidden border-t border-brand-800/40 bg-brand-950 px-6 lg:hidden"
+                className="overflow-hidden border-t border-brand-900/60 bg-brand-950 px-6 lg:hidden"
               >
                 <div className="mx-auto flex max-w-7xl flex-col gap-1 py-4">
                   {[
                     ["Início", "#inicio"],
-                    ["Sobre a Advogada", "#sobre"],
-                    ["Áreas de Atuação", "#atuacao"],
-                    ["Por que Escolher?", "#diferenciais"],
-                    ["Avaliações no Google (4,9 ★)", "#avaliacoes"],
-                    ["Contato & Sede em Nova Serrana", "#contato"],
+                    ["Sobre a Roberta", "#sobre"],
+                    ["Execução Penal & Liberdade", "#execucao-penal"],
+                    ["Áreas de Atuação Criminal", "#atuacao"],
+                    ["Avaliações no Google (5,0 ★)", "#avaliacoes"],
+                    ["Nova Sede & Plantão em Rio Pomba", "#contato"],
                   ].map(([label, href]) => (
                     <a
                       key={label}
@@ -532,21 +575,21 @@ export default function Home() {
                   <div className="mt-3 flex flex-col gap-2">
                     <a
                       className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-700 via-brand-600 to-brand-700 px-5 py-3.5 text-xs font-bold uppercase tracking-[0.13em] text-white shadow-md transition-all hover:brightness-105"
-                      href={getWhatsAppUrl()}
+                      href={getWhatsAppUrl("Olá, Dra. Roberta! Gostaria de consultar o plantão penal.")}
                       target="_blank"
                       rel="noreferrer"
                       onClick={closeMenu}
                     >
-                      <WhatsAppIcon size={16} /> WhatsApp: {PHONE_DISPLAY}
+                      <WhatsAppIcon size={16} /> Plantão 24h: {PHONE_DISPLAY}
                     </a>
                     <a
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-gold-300/30 px-5 py-3 text-xs font-semibold uppercase tracking-[0.13em] text-gold-300 transition-all hover:border-gold-200"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-gold-400/35 px-5 py-3 text-xs font-semibold uppercase tracking-[0.13em] text-gold-300 transition-all hover:border-gold-300"
                       href={GOOGLE_MAPS_URL}
                       target="_blank"
                       rel="noreferrer"
                       onClick={closeMenu}
                     >
-                      <MapPin size={15} /> R. Europa, 176 - Belvedere, Nova Serrana
+                      <MapPin size={15} /> R. Floripes Maria de Jesus, 15 - Rio Pomba
                     </a>
                   </div>
                 </div>
@@ -558,13 +601,13 @@ export default function Home() {
         {/* Hero Section */}
         <section
           id="inicio"
-          className="relative isolate scroll-mt-24 border-b border-brand-200/50 bg-gradient-to-b from-brand-50/80 via-pearl to-white"
+          className="relative isolate scroll-mt-24 border-b border-brand-200/50 bg-gradient-to-b from-brand-50/70 via-pearl to-white"
         >
-          {/* Subtle burgundy & rose-gold ambient glow */}
-          <div className="pointer-events-none absolute -right-32 top-8 -z-10 size-[36rem] rounded-full bg-brand-200/35 blur-3xl" />
-          <div className="pointer-events-none absolute -left-20 bottom-10 -z-10 size-[28rem] rounded-full bg-brand-100/50 blur-3xl" />
+          {/* Subtle wine & warm gold ambient glow */}
+          <div className="pointer-events-none absolute -right-32 top-8 -z-10 size-[36rem] rounded-full bg-brand-200/30 blur-3xl" />
+          <div className="pointer-events-none absolute -left-20 bottom-10 -z-10 size-[28rem] rounded-full bg-gold-200/25 blur-3xl" />
 
-          <div className="mx-auto grid min-h-[660px] max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:min-h-[720px] lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:px-12 lg:py-20">
+          <div className="mx-auto grid min-h-[660px] max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:min-h-[720px] lg:grid-cols-[1.12fr_0.88fr] lg:gap-12 lg:px-12 lg:py-20">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -572,9 +615,9 @@ export default function Home() {
               className="relative z-10 max-w-2xl lg:py-6"
             >
               <motion.div variants={reveal} className="eyebrow mb-6">
-                <span className="size-2 shrink-0 rounded-full bg-brand-600" />
+                <span className="size-2 shrink-0 rounded-full bg-brand-600 animate-pulse" />
                 <span>
-                  Nova Serrana - MG · Atendimento em Todo o Brasil · 4,9 ★ no Google
+                  Rio Pomba - MG · Plantão Criminal 24h · 5,0 ★ no Google (114 Avaliações)
                 </span>
               </motion.div>
 
@@ -582,9 +625,9 @@ export default function Home() {
                 variants={reveal}
                 className="max-w-[760px] font-serif text-[2.75rem] leading-[1.04] tracking-[-0.025em] text-ink sm:text-5xl lg:text-[4.15rem]"
               >
-                Defesa jurídica estratégica, célere e humanizada para{" "}
+                Defesa criminal técnica, ágil e combativa para{" "}
                 <span className="font-serif italic text-brand-700">
-                  garantir seus direitos e sua família.
+                  resguardar sua liberdade e seu futuro.
                 </span>
               </motion.h1>
 
@@ -594,9 +637,9 @@ export default function Home() {
               >
                 Sob a liderança da{" "}
                 <strong className="font-semibold text-ink">
-                  Dra. Gisele Ferreira
-                </strong>
-                , nosso escritório alia combatividade técnica, escuta qualificada e excelência processual. Especialista em Direito de Família e Sucessões (divórcios, inventários em cartório, partilhas e pensão), Direito Previdenciário (INSS), Cível, Consumidor e soluções extrajudiciais de conflitos. Sede no Belvedere em Nova Serrana (MG) com atendimento presencial e suporte online ágil em todo o Brasil.
+                  Dra. Roberta Veiga
+                </strong>{" "}
+                (OAB/MG 210.863), especialista em Execução Penal e pós-graduada em Ciências Criminais pela PUC MG, atuamos com método, rigor obsessivo aos detalhes e transparência total — sem juridiquês inútil. Da prisão em flagrante e audiência de custódia ao cumprimento da pena: quando a liberdade está em jogo, cada minuto e cada detalhe importam.
               </motion.p>
 
               <motion.div
@@ -604,19 +647,21 @@ export default function Home() {
                 className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
               >
                 <GlowingButton
-                  href={getWhatsAppUrl()}
+                  href={getWhatsAppUrl(
+                    "Olá, Dra. Roberta Veiga! Gostaria de uma análise jurídica criminal urgente para meu caso."
+                  )}
                   target="_blank"
                   size="lg"
                   variant="burgundy"
                   className="rounded-full shadow-md"
                 >
-                  <WhatsAppIcon size={16} /> Consultar Meu Caso no WhatsApp
+                  <WhatsAppIcon size={16} /> Falar no Plantão 24h WhatsApp
                 </GlowingButton>
                 <a
-                  href="#atuacao"
+                  href="#execucao-penal"
                   className="group inline-flex items-center gap-2 px-2 py-3 text-sm font-semibold text-ink transition-colors hover:text-brand-700"
                 >
-                  Conhecer áreas de atuação{" "}
+                  Conhecer Execução Penal{" "}
                   <ArrowRight
                     size={15}
                     className="transition-transform group-hover:translate-x-1"
@@ -630,18 +675,18 @@ export default function Home() {
               >
                 <span className="inline-flex items-center gap-2 font-medium">
                   <Star size={15} className="fill-amber-500 text-amber-500" />{" "}
-                  4,9 estrelas no Google (12 avaliações reais)
+                  5,0 estrelas no Google (114 avaliações reais)
                 </span>
                 <span className="inline-flex items-center gap-2 font-medium">
-                  <Clock size={15} className="text-brand-700" /> Atendimento de Segunda a Sexta: 08:00 às 18:00
+                  <Clock size={15} className="text-brand-700" /> Plantão Criminal Aberto 24 Horas
                 </span>
                 <span className="inline-flex items-center gap-2 font-medium">
-                  <MapPin size={15} className="text-brand-700" /> R. Europa, 176 - Belvedere · Nova Serrana - MG
+                  <MapPin size={15} className="text-brand-700" /> R. Floripes Maria de Jesus, 15 - Loja 1 · Rio Pomba
                 </span>
               </motion.div>
             </motion.div>
 
-            {/* Hero Visual Presentation - Dra. Gisele Ferreira na Mesa com Livro de Família */}
+            {/* Hero Visual Presentation - Retrato e Autoridade Dra. Roberta Veiga */}
             <motion.div
               initial={{ opacity: 0, scale: 0.97, y: 18 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -650,36 +695,39 @@ export default function Home() {
                 delay: 0.18,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="relative mx-auto w-full max-w-[500px] lg:ml-auto lg:mr-2"
+              className="relative mx-auto w-full max-w-[480px] lg:ml-auto lg:mr-2"
             >
-              <div className="relative aspect-[4/4.3] overflow-hidden rounded-3xl border border-brand-500/35 bg-brand-950 shadow-2xl ring-1 ring-brand-300/30">
+              <div className="relative aspect-[4/4.5] overflow-hidden rounded-3xl border border-brand-700/35 bg-brand-950 shadow-2xl ring-1 ring-gold-400/30">
                 <Image
-                  src={FOTO_HERO_SRC}
-                  alt="Dra. Gisele Ferreira — Advogada em Nova Serrana - MG"
+                  src={FOTO_PORTRAIT_SRC}
+                  alt="Dra. Roberta Veiga — Advogada Criminalista e Especialista em Execução Penal"
                   fill
                   priority
                   sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 45vw"
                   className="object-cover object-top"
                 />
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-brand-950 via-brand-950/70 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-brand-950 via-brand-950/75 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-3 text-white sm:bottom-8 sm:left-8 sm:right-8">
                   <div>
-                    <p className="font-serif text-2xl font-normal tracking-wide text-white">
-                      Dra. Gisele Ferreira
+                    <span className="inline-block rounded-full bg-brand-700/90 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
+                      OAB/MG 210.863
+                    </span>
+                    <p className="mt-2 font-serif text-2xl font-normal tracking-wide text-white">
+                      Dra. Roberta Veiga
                     </p>
-                    <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-brand-200">
-                      Advocacia Especializada · Nova Serrana - MG
+                    <p className="mt-0.5 text-[11px] uppercase tracking-[0.18em] text-gold-300">
+                      Advogada Criminalista · PUC MG
                     </p>
                   </div>
-                  <span className="grid size-11 shrink-0 place-items-center rounded-full border border-gold-300/40 bg-brand-950/80 text-gold-300 backdrop-blur-sm">
-                    <Scale size={18} />
+                  <span className="grid size-12 shrink-0 place-items-center rounded-full border border-gold-400/50 bg-brand-950/85 text-gold-300 shadow-md backdrop-blur-sm">
+                    <Scale size={20} />
                   </span>
                 </div>
               </div>
 
               {/* Floating authority badge */}
-              <div className="absolute -left-3 top-6 z-10 rounded-full border border-gold-300/40 bg-white/95 px-4 py-2 text-[10px] font-bold tracking-[0.14em] text-brand-900 shadow-card backdrop-blur-md sm:-left-5">
-                NOVA SERRANA · ATENDIMENTO BRASIL
+              <div className="absolute -left-3 top-6 z-10 rounded-full border border-gold-400/40 bg-white/95 px-4 py-2 text-[10px] font-bold tracking-[0.14em] text-brand-900 shadow-card backdrop-blur-md sm:-left-5">
+                ESPECIALISTA EM EXECUÇÃO PENAL
               </div>
 
               {/* Floating Google rating badge */}
@@ -689,12 +737,12 @@ export default function Home() {
                   <div className="flex items-center gap-1 text-brand-800">
                     <Star size={13} className="fill-amber-500 text-amber-500" />
                     <span className="font-serif text-base font-bold text-ink">
-                      4,9 / 5,0
+                      5,0 / 5,0
                     </span>
                   </div>
                 </div>
                 <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-ink-soft">
-                  12 Avaliações no Google
+                  114 Avaliações no Google
                 </p>
               </div>
             </motion.div>
@@ -709,20 +757,20 @@ export default function Home() {
           <div className="mx-auto grid max-w-7xl gap-7 px-5 py-8 sm:grid-cols-4 sm:gap-4 sm:px-8 lg:px-12">
             {[
               [
-                "4,9 ★",
-                "avaliação de excelência com 12 depoimentos reais e verificados no Google",
+                "5,0 ★",
+                "nota máxima de excelência com 114 avaliações reais verificadas no Google",
               ],
               [
-                "Família & INSS",
-                "atuação especializada em direitos patrimoniais, familiares e benefícios",
+                "Execução Penal",
+                "especialista pós-graduada pela PUC MG com foco em liberdade antecipada",
               ],
               [
-                "Nova Serrana",
-                "sede própria no Belvedere na R. Europa, 176 com atendimento presencial",
+                "Plantão 24h",
+                "atendimento emergencial imediato em flagrantes, delegacias e custódias",
               ],
               [
-                "100% Online",
-                "atendimento digital célere e seguro para clientes em todo o país",
+                "Nova Sede",
+                "espaço moderno na R. Floripes Maria de Jesus, 15 - Loja 1, Centro de Rio Pomba",
               ],
             ].map(([value, label], index) => (
               <div
@@ -733,7 +781,7 @@ export default function Home() {
                     : "flex items-center gap-4 sm:justify-center"
                 }
               >
-                <span className="font-serif text-2xl font-semibold text-brand-800 sm:text-3xl">
+                <span className="font-serif text-2xl font-semibold text-brand-700 sm:text-3xl">
                   {value}
                 </span>
                 <span className="max-w-[165px] text-[11px] leading-5 text-ink-soft">
@@ -744,29 +792,29 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Sobre a Dra. Gisele Ferreira */}
+        {/* Sobre a Dra. Roberta Veiga ("Quem sou eu") */}
         <section
           id="sobre"
           className="scroll-mt-24 bg-pearl py-20 sm:py-28 lg:py-32"
         >
           <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 lg:px-12">
-            {/* Dra. Gisele Ferreira portrait */}
+            {/* Apresentação Visual Oficial da Roberta */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={reveal}
-              className="relative mx-auto w-full max-w-[480px]"
+              className="relative mx-auto w-full max-w-[490px]"
             >
-              <div className="relative aspect-[3/3.8] overflow-hidden rounded-2xl border border-brand-700/30 bg-brand-950 shadow-card">
+              <div className="relative overflow-hidden rounded-2xl border border-brand-300/60 bg-white shadow-card">
                 <Image
-                  src={FOTO_SOBRE_SRC}
-                  alt="Dra. Gisele Ferreira — Advogada"
-                  fill
-                  sizes="(max-width: 1024px) 90vw, 45vw"
-                  className="object-cover object-top"
+                  src="/roberta-veiga.jpg"
+                  alt="Dra. Roberta Veiga — Quem sou eu, Prazer Roberta Veiga"
+                  width={790}
+                  height={1024}
+                  priority
+                  className="h-auto w-full object-contain"
                 />
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-brand-950/95 via-brand-950/40 to-transparent" />
               </div>
 
               {/* Authority badge card */}
@@ -774,24 +822,24 @@ export default function Home() {
                 <div className="flex items-center gap-2 text-brand-800">
                   <Award size={16} />
                   <p className="text-[10px] font-bold uppercase tracking-[0.16em]">
-                    Advocacia Especializada & Humanizada
+                    Advocacia Criminal Estratégica
                   </p>
                 </div>
                 <p className="mt-1 font-serif text-lg leading-snug text-ink">
-                  Dra. Gisele Ferreira
+                  Dra. Roberta Veiga
                 </p>
                 <p className="mt-0.5 text-[11px] font-medium text-brand-700">
-                  Gisele Ferreira Advogada
+                  Roberta Andrade Veiga Medeiros · OAB/MG 210.863
                 </p>
                 <p className="mt-1 text-[11px] leading-4 text-ink-soft">
-                  R. Europa, 176 - Belvedere, Nova Serrana - MG. Atendimento nacional.
+                  R. Floripes Maria de Jesus, 15 - Loja 1, Centro, Rio Pomba - MG.
                 </p>
               </div>
 
-              <span className="absolute -left-4 -top-4 -z-10 size-24 border-l border-t border-brand-400/40 sm:-left-7 sm:-top-7 sm:size-32" />
+              <span className="absolute -left-4 -top-4 -z-10 size-24 border-l-2 border-t-2 border-brand-400/40 sm:-left-7 sm:-top-7 sm:size-32" />
             </motion.div>
 
-            {/* Text description */}
+            {/* Texto Descritivo: Tom Pessoal, Claro e Firme */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -799,92 +847,54 @@ export default function Home() {
               variants={stagger}
             >
               <motion.p variants={reveal} className="eyebrow">
-                SOBRE A ADVOGADA & O ESCRITÓRIO
+                QUEM SOU EU · PRAZER, ROBERTA VEIGA
               </motion.p>
               <motion.h2
                 variants={reveal}
                 className="mt-4 max-w-2xl font-serif text-3xl leading-[1.12] tracking-[-0.02em] text-ink sm:text-4xl lg:text-[3.25rem]"
               >
-                Rigor técnico e determinação aliados a um{" "}
+                Execução penal não é só trabalho:{" "}
                 <span className="italic text-brand-700">
-                  atendimento acolhedor, transparente e resolutivo.
+                  é propósito, método e compromisso real.
                 </span>
               </motion.h2>
 
-              <motion.p
-                variants={reveal}
-                className="mt-6 max-w-xl text-[15px] leading-7 text-ink-soft"
-              >
-                Com sede no bairro Belvedere em{" "}
-                <strong className="text-ink">
-                  Nova Serrana (MG), na Rua Europa, 176
-                </strong>
-                , e atuação digital com alcance em todo o país, a advocacia de{" "}
-                <strong className="text-ink">
-                  Dra. Gisele Ferreira
-                </strong>{" "}
-                nasceu do compromisso intransigente com a justiça, a ética e a dedicação total aos interesses de cada cliente.
-              </motion.p>
-
-              <motion.p
-                variants={reveal}
-                className="mt-4 max-w-xl text-[15px] leading-7 text-ink-soft"
-              >
-                Reconhecida pelos clientes pela disponibilidade, transparência absoluta em cada fase do processo e transmissão de profunda segurança técnica, Dra. Gisele conduz cada caso com atendimento personalizado e atenção máxima aos detalhes. Aqui, você é ouvido com empatia e nunca fica sem resposta.
-              </motion.p>
-
-              {/* Quote Card */}
-              <motion.div
-                variants={reveal}
-                className="mt-6 rounded-xl border border-brand-300/40 bg-brand-50/80 p-5 shadow-xs"
-              >
-                <blockquote className="font-serif text-sm italic leading-relaxed text-brand-900">
-                  &ldquo;Excelente profissional! Super atencioso, disponível e transparente em todas as fases do processo. Transmite muita segurança e conhecimento técnico. Recomendo de olhos fechados!&rdquo;
-                </blockquote>
-                <p className="mt-2 text-[11px] font-semibold uppercase tracking-wider text-brand-700">
-                  — Welton Ferreira · Avaliação Verificada no Google Meu Negócio
+              <motion.div variants={reveal} className="mt-6 space-y-4 text-[15px] leading-7 text-ink-soft">
+                <p>
+                  <strong className="text-ink">Oiê, prazer! Roberta Veiga por aqui 👋🏻</strong>{" "}
+                  (e sem formalidades… &ldquo;Dra.&rdquo; a gente deixa pro processo e pra audiência 🤍).
+                </p>
+                <p>
+                  Sou advogada criminalista e apaixonada pelo que faço. Me encontrei na <strong className="text-ink">execução penal</strong> — e te garanto: vai muito além de progressão de regime ou saída temporária. É sobre direitos fundamentais, estratégia minuciosa e fazer diferença de verdade na vida de quem acredita que, depois da sentença, está tudo perdido.
+                </p>
+                <p>
+                  Sou extremamente organizada (talvez um pouco obcecada 😅), então tudo por aqui segue método, estrutura e atenção máxima aos detalhes. Minha conexão com o Direito Penal começou na prática, ainda na faculdade, com experiências na delegacia e no sistema prisional — e desde então nunca mais saí dessa área.
+                </p>
+                <p>
+                  Tenho um interesse por medicina legal e crimes digitais, e estou em constante atualização acadêmica. E apesar da cara de brava (eu sei que engana rs), meu atendimento é leve, direto e transparente — sem juridiquês desnecessário. Aqui não tem complicação: tem clareza, estratégia e compromisso real com cada caso.
                 </p>
               </motion.div>
 
+              {/* Pillars Badges */}
               <motion.div
                 variants={reveal}
                 className="mt-6 grid grid-cols-1 gap-2.5 text-xs font-medium text-ink sm:grid-cols-2"
               >
                 <div className="flex items-center gap-2">
-                  <CheckCircle2
-                    size={15}
-                    className="shrink-0 text-brand-700"
-                  />
-                  <span>
-                    Atuação precisa e sensível em Direito de Família e Sucessões
-                  </span>
+                  <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
+                  <span>Pós-graduada em Ciências Criminais pela PUC MG</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2
-                    size={15}
-                    className="shrink-0 text-brand-700"
-                  />
-                  <span>
-                    Capacidade resolutiva extrajudicial célere sem lentidão
-                  </span>
+                  <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
+                  <span>Especialista em Execução Penal e Liberdade</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2
-                    size={15}
-                    className="shrink-0 text-brand-700"
-                  />
-                  <span>
-                    Sede moderna e acessível no Belvedere em Nova Serrana - MG
-                  </span>
+                  <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
+                  <span>Plantão Penal 24 Horas em Rio Pomba e região</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2
-                    size={15}
-                    className="shrink-0 text-brand-700"
-                  />
-                  <span>
-                    Nota 4,9 ★ no Google com avaliações 100% autênticas
-                  </span>
+                  <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
+                  <span>Nota máxima 5,0 ★ no Google com 114 avaliações</span>
                 </div>
               </motion.div>
 
@@ -894,14 +904,14 @@ export default function Home() {
               >
                 <GlowingButton
                   href={getWhatsAppUrl(
-                    "Olá, Dra. Gisele Ferreira! Gostaria de agendar uma consulta jurídica para meu caso."
+                    "Oiê, Roberta! Gostaria de conversar com você sobre um caso criminal."
                   )}
                   target="_blank"
                   size="md"
                   variant="burgundy"
                   className="rounded-full shadow-md"
                 >
-                  <WhatsAppIcon size={16} /> Falar com a Dra. Gisele
+                  <WhatsAppIcon size={16} /> Falar Diretamente com a Roberta
                 </GlowingButton>
                 <a
                   href={`tel:+${WHATSAPP_NUMBER}`}
@@ -914,7 +924,150 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Áreas de Atuação */}
+        {/* Seção Especial: Por que a Execução Penal é Decisiva? */}
+        <section
+          id="execucao-penal"
+          className="scroll-mt-24 border-y border-brand-200/60 bg-brand-50/50 py-20 sm:py-28 lg:py-32"
+        >
+          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <Heading
+                eyebrow="EXECUÇÃO PENAL ESTRATÉGICA & LIBERDADE"
+                description="Muitas pessoas cumprem meses ou anos a mais na prisão por meros erros de cálculo na guia ou inércia da defesa. Nós recalculamos cada dia de pena para antecipar a liberdade."
+              >
+                Depois da sentença, não está tudo perdido:{" "}
+                <span className="italic text-brand-700">
+                  é onde a verdadeira luta pelo direito começa.
+                </span>
+              </Heading>
+              <GlowingButton
+                href={getWhatsAppUrl(
+                  "Olá, Dra. Roberta! Gostaria de uma análise para cálculo de pena / progressão de regime na Execução Penal."
+                )}
+                target="_blank"
+                size="md"
+                variant="burgundy"
+                className="rounded-full shadow-sm"
+              >
+                <WhatsAppIcon size={16} /> Analisar Caso de Execução Penal
+              </GlowingButton>
+            </div>
+
+            <div className="mt-12 grid gap-8 lg:grid-cols-2">
+              {/* Card 1: Execução Penal e Liberdade Antecipada */}
+              <motion.article
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.65 }}
+                className="group flex flex-col justify-between rounded-2xl border border-brand-200/80 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-400 sm:p-9"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-300/40 bg-brand-50 px-3.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-800">
+                      <UnlockIcon size={14} /> Foco na Liberdade
+                    </span>
+                    <span className="text-xs font-semibold text-brand-700">
+                      Especialidade Principal
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-serif text-2xl leading-tight text-ink sm:text-[1.75rem]">
+                    Progressão de Regime, Remição e Livramento Condicional
+                  </h3>
+                  <p className="mt-3 text-[14px] leading-relaxed text-ink-soft">
+                    Analisamos folha por folha do processo de execução penal. Verificamos frações legais aplicáveis, tempo de prisão cautelar não computado (detração), dias remidos por trabalho, leitura ou cursos e formulamos pedidos objetivos e céleres para destravar a ida ao regime semiaberto, aberto ou livramento condicional.
+                  </p>
+                  <ul className="mt-5 space-y-2 text-xs font-medium text-ink">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
+                      <span>Cálculo minucioso para antecipar progressão e livramento condicional</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
+                      <span>Remição de pena por estudo, ENEM/ENCCEJA, trabalho e leitura</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
+                      <span>Defesa técnica vigorosa contra faltas disciplinares graves (PAD)</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-7 border-t border-brand-200/60 pt-4">
+                  <a
+                    href={getWhatsAppUrl(
+                      "Olá, Dra. Roberta! Gostaria de consultar sobre a execução penal e cálculo de pena de um familiar."
+                    )}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex w-full items-center justify-between rounded-xl border border-brand-800/20 bg-brand-50/80 px-4 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-brand-900 transition-all hover:border-brand-800 hover:bg-brand-900 hover:text-white"
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      <WhatsAppIcon size={15} /> Consultar Execução Penal no WhatsApp
+                    </span>
+                    <ArrowUpRight size={15} />
+                  </a>
+                </div>
+              </motion.article>
+
+              {/* Card 2: Plantão Criminal 24 Horas & Prisão em Flagrante */}
+              <motion.article
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.65, delay: 0.1 }}
+                className="group flex flex-col justify-between rounded-2xl border border-brand-200/80 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-400 sm:p-9"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-300/40 bg-brand-50 px-3.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-800">
+                      <Zap size={14} /> Plantão 24 Horas
+                    </span>
+                    <span className="text-xs font-semibold text-brand-700">
+                      Atendimento Imediato
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-serif text-2xl leading-tight text-ink sm:text-[1.75rem]">
+                    Audiência de Custódia e Acompanhamento em Delegacia
+                  </h3>
+                  <p className="mt-3 text-[14px] leading-relaxed text-ink-soft">
+                    Prisões e abordagens não escolhem dia nem horário. Nosso plantão penal atua 24 horas para prestar assistência técnica imediata, evitando arbitrariedades, resguardando o direito ao silêncio e lutando pela concessão da liberdade provisória já na audiência de custódia.
+                  </p>
+                  <ul className="mt-5 space-y-2 text-xs font-medium text-ink">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
+                      <span>Chegada rápida à delegacia para orientação do custodiado</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
+                      <span>Audiência de custódia com foco em liberdade provisória sem fiança</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
+                      <span>Habeas Corpus de urgência perante o Tribunal de Justiça (TJMG)</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-7 border-t border-brand-200/60 pt-4">
+                  <a
+                    href={getWhatsAppUrl(
+                      "Olá, Dra. Roberta! Preciso de atendimento urgente para prisão em flagrante / delegacia."
+                    )}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex w-full items-center justify-between rounded-xl border border-brand-800/20 bg-brand-50/80 px-4 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-brand-900 transition-all hover:border-brand-800 hover:bg-brand-900 hover:text-white"
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      <WhatsAppIcon size={15} /> Chamar Plantão Criminal 24h
+                    </span>
+                    <ArrowUpRight size={15} />
+                  </a>
+                </div>
+              </motion.article>
+            </div>
+          </div>
+        </section>
+
+        {/* Áreas de Atuação Criminal */}
         <section
           id="atuacao"
           className="scroll-mt-24 bg-white py-20 sm:py-28 lg:py-32"
@@ -928,17 +1081,16 @@ export default function Home() {
               className="flex flex-col justify-between gap-6 md:flex-row md:items-end"
             >
               <Heading
-                eyebrow="SERVIÇOS JURÍDICOS & PILARES DE ATUAÇÃO"
-                description="Soluções jurídicas estratégicas, personalizadas e combativas para proteger seus direitos, seu patrimônio e sua família em Nova Serrana, Minas Gerais e em todo o Brasil."
+                eyebrow="PILARE DE ATUAÇÃO PENAL & SERVIÇOS"
+                description="Soluções defensivas de alto padrão técnico em Rio Pomba, Ubá, Juiz de Fora, Minas Gerais e Tribunais Superiores em Brasília."
               >
-                Atuação especializada em{" "}
+                Advocacia criminal focada em{" "}
                 <span className="italic text-brand-700">
-                  Família, Sucessões, Previdenciário, Cível e Consumidor.
+                  liberdade, rigor técnico e estratégia combativa.
                 </span>
               </Heading>
               <p className="max-w-[270px] pb-1 text-xs leading-6 text-ink-soft">
-                Selecione uma especialidade abaixo para conferir os detalhes de
-                atuação e iniciar seu atendimento direto pelo WhatsApp.
+                Clique em qualquer especialidade para conferir o escopo completo de atuação e falar diretamente pelo WhatsApp.
               </p>
             </motion.div>
 
@@ -955,10 +1107,14 @@ export default function Home() {
                   <motion.article
                     key={area.id}
                     variants={reveal}
-                    className="group flex min-h-[350px] flex-col rounded-xl border border-brand-200/80 bg-pearl p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-500 hover:shadow-card sm:p-8"
+                    className={`group flex min-h-[350px] flex-col rounded-xl border p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card sm:p-8 ${
+                      area.isSpecialty
+                        ? "border-brand-300/80 bg-brand-50/40 hover:border-brand-600"
+                        : "border-brand-200/80 bg-pearl hover:border-brand-500"
+                    }`}
                   >
                     <div className="flex items-start justify-between">
-                      <span className="grid size-12 place-items-center rounded-full bg-white text-brand-800 shadow-sm transition-colors group-hover:bg-brand-900 group-hover:text-white">
+                      <span className="grid size-12 place-items-center rounded-full bg-white text-brand-700 shadow-sm transition-colors group-hover:bg-brand-900 group-hover:text-white">
                         <Icon size={22} strokeWidth={1.5} />
                       </span>
                       <span className="font-serif text-2xl text-brand-400">
@@ -996,171 +1152,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção Especial: Por que Escolher a Dra. Gisele Ferreira? */}
-        <section
-          id="diferenciais"
-          className="scroll-mt-24 border-y border-brand-200/60 bg-brand-50/50 py-20 sm:py-28 lg:py-32"
-        >
-          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <Heading
-                eyebrow="EFICIÊNCIA COMPROVADA & RESOLUÇÃO DE CASOS"
-                description="Veja como o compromisso com a celeridade, a técnica e a empatia transforma problemas jurídicos angustiantes em reparações justas e tranquilidade."
-              >
-                Conflito familiar, questão previdenciária ou direito violado?{" "}
-                <span className="italic text-brand-700">
-                  Nós esclarecemos e lutamos pelo seu direito.
-                </span>
-              </Heading>
-              <GlowingButton
-                href={getWhatsAppUrl(
-                  "Olá, Dra. Gisele! Gostaria de uma análise para meu caso."
-                )}
-                target="_blank"
-                size="md"
-                variant="burgundy"
-                className="rounded-full shadow-sm"
-              >
-                <WhatsAppIcon size={16} /> Analisar Meu Caso no WhatsApp
-              </GlowingButton>
-            </div>
-
-            <div className="mt-12 grid gap-8 lg:grid-cols-2">
-              {/* Card 1: Direito de Família e Inventários */}
-              <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.65 }}
-                className="group flex flex-col justify-between rounded-2xl border border-brand-200/80 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-400 sm:p-9"
-              >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-300/40 bg-brand-50 px-3.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-800">
-                      <Users size={14} /> Direito de Família & Sucessões
-                    </span>
-                    <span className="text-xs font-semibold text-brand-700">
-                      Celeridade & Discrição
-                    </span>
-                  </div>
-                  <h3 className="mt-4 font-serif text-2xl leading-tight text-ink sm:text-[1.75rem]">
-                    Inventários Ágeis em Cartório, Divórcios e Partilha de Bens
-                  </h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-ink-soft">
-                    Momentos de transição familiar exigem acompanhamento ético, preciso e protetivo. Conduzimos inventários extrajudiciais em cartório de forma desburocratizada, divórcios consensuais e partilhas com total imparcialidade, resguardando o patrimônio e os direitos de cada herdeiro.
-                  </p>
-                  <ul className="mt-5 space-y-2 text-xs font-medium text-ink">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
-                      <span>Inventário extrajudicial em cartório rápido e sem desgaste litigioso</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
-                      <span>Defesa rigorosa dos interesses de filhos menores em pensão e guarda</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
-                      <span>Atendimento presencial em Nova Serrana e online em todo o Brasil</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-7 border-t border-brand-200/60 pt-4">
-                  <a
-                    href={getWhatsAppUrl(
-                      "Olá, Dra. Gisele! Gostaria de consultar sobre inventário ou direito de família."
-                    )}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex w-full items-center justify-between rounded-xl border border-brand-800/20 bg-brand-50/80 px-4 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-brand-900 transition-all hover:border-brand-800 hover:bg-brand-900 hover:text-white"
-                  >
-                    <span className="inline-flex items-center gap-2">
-                      <WhatsAppIcon size={15} /> Consultar Direito de Família no WhatsApp
-                    </span>
-                    <ArrowUpRight size={15} />
-                  </a>
-                </div>
-              </motion.article>
-
-              {/* Card 2: Resolução Extrajudicial Ágil */}
-              <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.65, delay: 0.1 }}
-                className="group flex flex-col justify-between rounded-2xl border border-brand-200/80 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-400 sm:p-9"
-              >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-300/40 bg-brand-50 px-3.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-800">
-                      <Handshake size={14} /> Resolução Célere
-                    </span>
-                    <span className="text-xs font-semibold text-brand-700">
-                      Sem Processo Judicial
-                    </span>
-                  </div>
-                  <h3 className="mt-4 font-serif text-2xl leading-tight text-ink sm:text-[1.75rem]">
-                    Solução de Impasses sem Precisar Entrar na Justiça
-                  </h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-ink-soft">
-                    Nem todo litígio precisa enfrentar anos de morosidade no Judiciário. Dra. Gisele Ferreira atua com elevada habilidade conciliadora e negocial, compondo acordos extrajudiciais diretos com empresas, fornecedores e partes contrárias com celeridade e plena segurança jurídica.
-                  </p>
-                  <ul className="mt-5 space-y-2 text-xs font-medium text-ink">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
-                      <span>Negociação direta e mediação amigável estratégica</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
-                      <span>Economia substancial de tempo, estresse emocional e custas judiciais</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 size={15} className="shrink-0 text-brand-700" />
-                      <span>Termos de acordo formalizados com força de título executivo</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-7 border-t border-brand-200/60 pt-4">
-                  <a
-                    href={getWhatsAppUrl(
-                      "Olá, Dra. Gisele! Gostaria de saber como resolver um conflito de forma rápida e extrajudicial."
-                    )}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex w-full items-center justify-between rounded-xl border border-brand-800/20 bg-brand-50/80 px-4 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-brand-900 transition-all hover:border-brand-800 hover:bg-brand-900 hover:text-white"
-                  >
-                    <span className="inline-flex items-center gap-2">
-                      <WhatsAppIcon size={15} /> Consultar Acordo Extrajudicial
-                    </span>
-                    <ArrowUpRight size={15} />
-                  </a>
-                </div>
-              </motion.article>
-            </div>
-          </div>
-        </section>
-
-        {/* Nosso Compromisso Ético e Operacional */}
+        {/* Nosso Método & Compromisso Profissional */}
         <section className="relative overflow-hidden bg-brand-950 py-20 text-white sm:py-28 lg:py-32">
           <div className="pointer-events-none absolute -left-28 top-1/4 size-96 rounded-full bg-brand-700/20 blur-3xl" />
-          <div className="pointer-events-none absolute -right-28 bottom-1/4 size-96 rounded-full bg-brand-600/15 blur-3xl" />
+          <div className="pointer-events-none absolute -right-28 bottom-1/4 size-96 rounded-full bg-gold-500/10 blur-3xl" />
 
           <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20 lg:px-12">
             <div>
               <Heading
-                eyebrow="NOSSO COMPROMISSO PROFISSIONAL"
+                eyebrow="MÉTODO & ESTRUTURA"
                 light
-                description="O reconhecimento comprovado com nota de 4,9 ★ no Google reflete a dedicação intransigente em aliar combatividade técnica, comunicação acolhedora e retorno rápido para cada cliente."
+                description="A avaliação 5,0 ★ no Google reflete a união entre preparo técnico, organização minuciosa e empatia real com quem está enfrentando o momento mais difícil da vida."
               >
-                Protegemos seus direitos com{" "}
-                <span className="italic text-brand-200">
-                  seriedade, clareza e dedicação total.
+                Aqui não tem complicação:{" "}
+                <span className="italic text-gold-300">
+                  tem clareza, estratégia e compromisso real.
                 </span>
               </Heading>
 
-              <blockquote className="mt-8 rounded-xl border border-gold-300/25 bg-white/5 p-6 font-serif text-base italic leading-7 text-brand-100">
-                &ldquo;Uma Advogada incrível muito precisa seu trabalho impecável atenciosa como sempre, recomendo sempre também 👏🏻👏🏻👏🏻&rdquo;
+              <blockquote className="mt-8 rounded-xl border border-gold-400/25 bg-white/5 p-6 font-serif text-base italic leading-7 text-brand-100">
+                &ldquo;Dra. Roberta é uma expert em execução penal. Prestativa, empenhada, atenciosa e, sobretudo, humana. O seu foco é a liberdade antecipada do seu cliente, e alcança resultados exitosos além do esperado.&rdquo;
                 <footer className="mt-3 font-sans text-[11px] font-semibold not-italic uppercase tracking-wider text-gold-300">
-                  — Keity Lorrany · Google Meu Negócio
+                  — David Alexandre Teles Farina · Google Meu Negócio (Local Guide)
                 </footer>
               </blockquote>
             </div>
@@ -1175,18 +1188,18 @@ export default function Home() {
               {[
                 [
                   "01",
-                  "Atendimento Acolhedor & Escuta Qualificada",
-                  "Entendemos que conflitos jurídicos geram angústia e incerteza. Atendemos com paciência, ouvindo com atenção cada detalhe para traçar a melhor estratégia sob medida.",
+                  "Organização Obsessiva & Atenção Aos Detalhes",
+                  "No processo penal, um detalhe despercebido ou um prazo negligenciado custa a liberdade. Analisamos cada folha dos autos, certidões carcerárias e cálculos com método rigoroso.",
                 ],
                 [
                   "02",
-                  "Comunicação Clara & Devolutivas Frequentes",
-                  "Não deixamos clientes sem resposta. Explicamos cada etapa do processo em linguagem simples e descomplicada, mantendo você sempre informado sobre seu andamento.",
+                  "Atendimento Leve, Direto e Sem Juridiquês",
+                  "Você e sua família entendem tudo o que está acontecendo. Explicamos cada passo em linguagem transparente e acessível, com honestidade sobre os riscos e as reais possibilidades.",
                 ],
                 [
                   "03",
-                  "Combatividade & Destravamento de Demandas",
-                  "Não aceitamos negativas automáticas de órgãos ou empresas. Atuamos com firmeza e fundamentação técnica sólida para assegurar a vitória do seu direito.",
+                  "Combatividade Incisiva & Presença Constante",
+                  "Não aceitamos inércia processual nem decisões arbitrárias. Interpomos os recursos cabíveis com agilidade e mantemos presença ativa em audiências, delegacias e no presídio.",
                 ],
               ].map(([number, title, description]) => (
                 <motion.div
@@ -1209,7 +1222,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Avaliações no Google (Depoimentos Reais - 4,9 estrelas · 12 avaliações) */}
+        {/* Avaliações no Google (Depoimentos Reais - 5,0 estrelas · 114 avaliações) */}
         <section
           id="avaliacoes"
           className="scroll-mt-24 bg-white py-20 sm:py-28 lg:py-32"
@@ -1218,11 +1231,11 @@ export default function Home() {
             <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
               <Heading
                 eyebrow="PROVA SOCIAL VERIFICADA · GOOGLE MEU NEGÓCIO"
-                description="Confira avaliações autênticas de clientes que confiaram suas causas à Dra. Gisele Ferreira em Nova Serrana e em todo o Brasil."
+                description="Confira avaliações autênticas de clientes e colegas advogados que confiam na competência técnica e dedicação incansável da Dra. Roberta Veiga."
               >
-                Avaliada com nota 4,9 ★ pela{" "}
+                Avaliação máxima 5,0 ★ pela{" "}
                 <span className="italic text-brand-700">
-                  precisão técnica, atenção e resultados conquistados.
+                  garra, técnica jurídica e conquistas de liberdade.
                 </span>
               </Heading>
 
@@ -1234,7 +1247,7 @@ export default function Home() {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="font-serif text-3xl font-bold leading-none text-ink">
-                      4,9
+                      5,0
                     </span>
                     <div className="flex gap-0.5 text-amber-500">
                       {Array.from({ length: 5 }, (_, i) => (
@@ -1247,7 +1260,7 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-brand-900">
-                    Gisele Ferreira Advogada
+                    Dra. Roberta Veiga
                   </p>
                   <a
                     href={GOOGLE_MAPS_URL}
@@ -1255,7 +1268,7 @@ export default function Home() {
                     rel="noreferrer"
                     className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-brand-800 transition-colors hover:text-brand-950"
                   >
-                    12 avaliações no Google <ArrowUpRight size={13} />
+                    114 avaliações no Google <ArrowUpRight size={13} />
                   </a>
                 </div>
               </div>
@@ -1316,11 +1329,11 @@ export default function Home() {
             <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-brand-200/60 pt-8 sm:flex-row">
               <div className="flex flex-wrap items-center gap-2">
                 {[
-                  "Especialista em Direito de Família",
-                  "Inventários rápidos em cartório",
-                  "Atendimento acolhedor e próximo",
-                  "Comunicação clara e transparente",
-                  "Nota 4,9 no Google",
+                  "Especialista em Execução Penal",
+                  "Plantão Criminal 24 Horas",
+                  "Liberdade Antecipada & Remição",
+                  "Comunicação Clara e Direta",
+                  "Nota 5,0 no Google com 114 Avaliações",
                 ].map((tag) => (
                   <span
                     key={tag}
@@ -1338,7 +1351,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="group inline-flex shrink-0 items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-brand-800 transition-colors hover:text-brand-950"
               >
-                Ver perfil e avaliações no Google{" "}
+                Ver todas as 114 avaliações no Google{" "}
                 <ArrowUpRight
                   size={15}
                   className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -1348,7 +1361,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contato & Localização */}
+        {/* Nova Sede & Contato */}
         <section
           id="contato"
           className="scroll-mt-24 bg-pearl py-20 sm:py-28 lg:py-32"
@@ -1356,27 +1369,29 @@ export default function Home() {
           <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-20 lg:px-12">
             <div>
               <Heading
-                eyebrow="CONTATO & SEDE EM NOVA SERRANA - MG"
-                description="Agende seu atendimento presencial em nossa sede no Belvedere em Nova Serrana ou inicie seu atendimento online pelo WhatsApp com retorno ágil para qualquer lugar do Brasil."
+                eyebrow="NOVA SEDE & PLANTÃO 24 HORAS"
+                description="Conheça nosso novo endereço no Centro de Rio Pomba (MG) ou acione o plantão criminal imediatamente via WhatsApp para casos urgentes a qualquer hora."
               >
                 Estamos prontas para{" "}
                 <span className="italic text-brand-700">
-                  defender seus direitos.
+                  defender sua liberdade.
                 </span>
               </Heading>
 
               <div className="mt-9 flex flex-col items-start gap-4">
                 <GlowingButton
-                  href={getWhatsAppUrl()}
+                  href={getWhatsAppUrl(
+                    "Olá, Dra. Roberta Veiga! Gostaria de falar sobre meu caso com o escritório."
+                  )}
                   target="_blank"
                   size="lg"
                   variant="burgundy"
                   className="rounded-full shadow-md"
                 >
-                  <WhatsAppIcon size={17} /> Iniciar Conversa no WhatsApp
+                  <WhatsAppIcon size={17} /> Chamar no WhatsApp Agora
                 </GlowingButton>
                 <p className="text-[11px] leading-5 text-ink-soft">
-                  Telefone e WhatsApp direto:{" "}
+                  Plantão e WhatsApp direto:{" "}
                   <strong className="text-ink">{PHONE_DISPLAY}</strong>
                 </p>
               </div>
@@ -1391,11 +1406,11 @@ export default function Home() {
                     <p className="font-semibold text-ink">
                       Horário de Funcionamento
                     </p>
-                    <p className="mt-0.5">
-                      Segunda a Sexta-feira: 08:00 às 18:00
+                    <p className="mt-0.5 text-brand-800 font-medium">
+                      Aberto 24 Horas · Plantão Penal Permanente
                     </p>
                     <p className="text-[11px] text-ink-soft/80">
-                      Atendimento presencial com agendamento prévio e atendimento online em todo o Brasil
+                      Atendimento presencial com agendamento e plantão emergencial para flagrantes e custódias 24h
                     </p>
                   </div>
                 </div>
@@ -1406,7 +1421,7 @@ export default function Home() {
                     href={`tel:+${WHATSAPP_NUMBER}`}
                     className="font-medium text-ink transition-colors hover:text-brand-800"
                   >
-                    {PHONE_DISPLAY} (Ligações e WhatsApp)
+                    {PHONE_DISPLAY} (Ligações e WhatsApp 24h)
                   </a>
                 </div>
 
@@ -1437,13 +1452,18 @@ export default function Home() {
                     size={16}
                     className="mt-0.5 shrink-0 text-brand-700"
                   />
-                  <span>{ADDRESS_TEXT}</span>
+                  <div>
+                    <span className="font-medium text-ink">{ADDRESS_TEXT}</span>
+                    <p className="mt-0.5 text-[11px] text-brand-700 font-medium">
+                      {ADDRESS_LANDMARKS}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Address & Office Card */}
-            <div className="relative overflow-hidden rounded-2xl border border-brand-200/80 bg-white p-7 shadow-card sm:p-10">
+            {/* Novo Endereço & Visual Card com Foto da Sede */}
+            <div className="relative overflow-hidden rounded-2xl border border-brand-200/80 bg-white p-7 shadow-card sm:p-9">
               <div className="absolute right-0 top-0 h-1.5 w-32 bg-brand-700" />
 
               <div className="flex items-center gap-4">
@@ -1452,48 +1472,63 @@ export default function Home() {
                 </span>
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-800">
-                    Sede do Escritório
+                    Novo Endereço · Sede Própria
                   </p>
                   <p className="mt-1 font-serif text-2xl text-ink">
-                    Nova Serrana · Minas Gerais
+                    Rio Pomba · Minas Gerais
                   </p>
                 </div>
               </div>
 
-              <address className="mt-7 max-w-md text-[14px] not-italic leading-7 text-ink-soft">
+              {/* Foto da Nova Sede - Sem cortes */}
+              <div className="relative mt-6 overflow-hidden rounded-2xl border border-brand-200 shadow-sm">
+                <Image
+                  src={FOTO_ENDERECO_SRC}
+                  alt="Novo endereço - Rua Floripes Maria de Jesus, 15 - Loja 1, Centro, Rio Pomba - MG"
+                  width={837}
+                  height={832}
+                  className="h-auto w-full object-contain"
+                />
+              </div>
+
+              <address className="mt-6 max-w-md text-[14px] not-italic leading-6 text-ink-soft">
                 <strong className="font-semibold text-ink">
-                  Gisele Ferreira Advogada
+                  Dra. Roberta Veiga Advocacia Criminal
                 </strong>
-                <br />
-                Dra. Gisele Ferreira
                 <br />
                 {ADDRESS_TEXT}
               </address>
 
-              {/* Weekly schedule table */}
-              <div className="mt-6 rounded-xl border border-brand-200/60 bg-pearl p-4 text-xs">
-                <p className="mb-2.5 text-[10px] font-bold uppercase tracking-[0.15em] text-brand-800">
-                  Expediente & Atendimento
+              {/* Referências de Localização */}
+              <div className="mt-5 rounded-xl border border-brand-200/60 bg-pearl p-4 text-xs">
+                <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-brand-800">
+                  Pontos de Referência & Facilidade de Acesso
                 </p>
-                <div className="grid grid-cols-2 gap-y-1.5 text-ink-soft">
-                  <span>Segunda a Sexta-feira</span>
-                  <span className="text-right font-semibold text-ink">
-                    08:00 às 18:00
-                  </span>
-                  <span>Atendimento Presencial</span>
-                  <span className="text-right font-semibold text-brand-700">
-                    Com agendamento
-                  </span>
-                  <span>Atendimento Digital</span>
-                  <span className="text-right text-ink">Em todo o Brasil</span>
+                <div className="grid grid-cols-1 gap-2 text-ink sm:grid-cols-2">
+                  <div className="flex items-center gap-2">
+                    <span className="size-2 rounded-full bg-brand-700" />
+                    <span>Esquina com a Rua João Marcelino</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="size-2 rounded-full bg-brand-700" />
+                    <span>Ao lado do LABCLIN</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="size-2 rounded-full bg-brand-700" />
+                    <span>Em frente à AUTOESCOLA RIO POMBA</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="size-2 rounded-full bg-brand-700" />
+                    <span>Loja 1 com fácil estacionamento</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="my-7 h-px bg-brand-200/60" />
+              <div className="my-6 h-px bg-brand-200/60" />
 
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <p className="text-xs text-ink-soft">
-                  R. Europa, 176 - Belvedere · Nova Serrana - MG
+                  Plantão 24h ativo para atendimento em toda a região
                 </p>
                 <a
                   href={GOOGLE_MAPS_URL}
@@ -1508,26 +1543,26 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Pre-Footer CTA Strip - Deep Burgundy with Rose-Gold Sheen */}
+        {/* Pre-Footer CTA Strip - Deep Ruby Wine with Warm Gold Accent */}
         <section className="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-950 px-5 py-14 text-white shadow-inner sm:px-8 sm:py-16 lg:px-12">
           <div className="mx-auto flex max-w-7xl flex-col justify-between gap-7 sm:flex-row sm:items-center">
             <div>
               <p className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gold-300">
-                <Sparkles size={13} /> GISELE FERREIRA · ADVOCACIA ESPECIALIZADA
+                <Sparkles size={13} /> DRA. ROBERTA VEIGA · ADVOCACIA CRIMINAL
               </p>
               <h2 className="mt-3 max-w-2xl font-serif text-3xl leading-tight text-white sm:text-4xl">
-                Precisa de orientação jurídica segura em Família, INSS ou Contratos?
+                Precisa de orientação jurídica urgente em Execução Penal ou Flagrante?
               </h2>
             </div>
             <a
               href={getWhatsAppUrl(
-                "Olá, Dra. Gisele! Gostaria de agendar uma consulta inicial com o escritório."
+                "Olá, Dra. Roberta! Gostaria de consultar sobre um caso criminal com urgência."
               )}
               target="_blank"
               rel="noreferrer"
               className="group inline-flex w-fit shrink-0 items-center gap-3 rounded-full bg-gradient-to-r from-brand-700 via-brand-600 to-brand-700 px-7 py-4 text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-md transition-all hover:-translate-y-0.5 hover:brightness-110 hover:shadow-burgundy"
             >
-              <WhatsAppIcon size={17} /> Falar no WhatsApp{" "}
+              <WhatsAppIcon size={17} /> Falar no WhatsApp 24h{" "}
               <ArrowUpRight size={15} />
             </a>
           </div>
@@ -1539,22 +1574,22 @@ export default function Home() {
             <div>
               <a
                 href="#inicio"
-                aria-label="Gisele Ferreira Advogada"
+                aria-label="Dra. Roberta Veiga Advocacia"
                 className="inline-block transition-transform hover:scale-[1.02]"
               >
                 <Image
-                  src={LOGO_SRC}
-                  width={1536}
-                  height={1024}
-                  alt="Gisele Ferreira Advogada - Logotipo Oficial"
-                  className="h-[72px] w-auto object-contain sm:h-[84px]"
+                  src={LOGO_LIGHT_SRC}
+                  width={1024}
+                  height={402}
+                  alt="Dra. Roberta Veiga - Logotipo Oficial - OAB/MG 210.863"
+                  className="h-[82px] w-auto object-contain sm:h-[96px]"
                 />
               </a>
               <p className="mt-4 max-w-xs text-xs leading-6 text-brand-100/70">
-                ⚖️ Assessoria jurídica de excelência com atendimento humanizado, clareza e dedicação. Especialista em Direito de Família e Sucessões, Previdenciário (INSS), Cível e Consumidor.
+                ⚖️ Advocacia criminal estratégica com método, combatividade e atendimento humano. Especialista em Execução Penal, Liberdade Antecipada, Prisões em Flagrante e Habeas Corpus.
               </p>
               <p className="mt-3 text-[11px] font-semibold text-gold-300">
-                Dra. Gisele Ferreira · Advogada · OAB/MG
+                Roberta Andrade Veiga Medeiros · OAB/MG 210.863
               </p>
             </div>
 
@@ -1567,19 +1602,19 @@ export default function Home() {
                   Início
                 </a>
                 <a className="footer-link" href="#sobre">
-                  Sobre a Advogada
+                  Sobre a Roberta
+                </a>
+                <a className="footer-link" href="#execucao-penal">
+                  Execução Penal & Liberdade
                 </a>
                 <a className="footer-link" href="#atuacao">
-                  Áreas de Atuação
-                </a>
-                <a className="footer-link" href="#diferenciais">
-                  Por que Escolher?
+                  Áreas de Atuação Criminal
                 </a>
                 <a className="footer-link" href="#avaliacoes">
-                  Avaliações no Google (4,9 ★)
+                  Avaliações no Google (5,0 ★)
                 </a>
                 <a className="footer-link" href="#contato">
-                  Contato & Sede em Nova Serrana
+                  Nova Sede & Plantão em Rio Pomba
                 </a>
               </div>
             </div>
@@ -1591,19 +1626,19 @@ export default function Home() {
               <div className="mt-4 flex flex-col items-start gap-2.5 text-xs text-brand-100/75">
                 <a
                   href={getWhatsAppUrl(
-                    "Olá, Dra. Gisele! Gostaria de solicitar um atendimento com o escritório."
+                    "Olá, Dra. Roberta! Gostaria de solicitar um atendimento com o escritório."
                   )}
                   target="_blank"
                   rel="noreferrer"
-                  className="footer-link inline-flex items-center gap-2 font-medium text-brand-200"
+                  className="footer-link inline-flex items-center gap-2 font-medium text-gold-300"
                 >
-                  <WhatsAppIcon size={15} /> WhatsApp: {PHONE_DISPLAY}
+                  <WhatsAppIcon size={15} /> WhatsApp 24h: {PHONE_DISPLAY}
                 </a>
                 <a
                   href={`tel:+${WHATSAPP_NUMBER}`}
                   className="footer-link inline-flex items-center gap-2"
                 >
-                  <Phone size={15} className="shrink-0" /> Telefone:{" "}
+                  <Phone size={15} className="shrink-0" /> Plantão:{" "}
                   {PHONE_DISPLAY}
                 </a>
                 <a
@@ -1630,7 +1665,7 @@ export default function Home() {
                   <span>{ADDRESS_TEXT}</span>
                 </a>
                 <p className="inline-flex items-center gap-2 pt-1 text-[11px] text-brand-200/80">
-                  <Clock size={14} className="shrink-0" /> Segunda a Sexta: 08:00 às 18:00
+                  <Clock size={14} className="shrink-0" /> Aberto 24 Horas · Plantão Permanente
                 </p>
               </div>
             </div>
@@ -1638,7 +1673,7 @@ export default function Home() {
 
           <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-3 border-t border-white/15 pt-6 text-[10px] text-brand-100/55 sm:flex-row sm:items-center sm:justify-between">
             <p>
-              © {new Date().getFullYear()} GISELE FERREIRA ADVOGADA. Todos os direitos reservados.
+              © {new Date().getFullYear()} DRA. ROBERTA VEIGA ADVOCACIA (OAB/MG 210.863). Todos os direitos reservados.
             </p>
             <p>
               Conteúdo meramente informativo, em estrita conformidade com o Código de Ética e Disciplina da OAB.
@@ -1653,16 +1688,16 @@ export default function Home() {
         >
           <a
             href={getWhatsAppUrl(
-              "Olá, Dra. Gisele Ferreira! Gostaria de tirar uma dúvida sobre meu caso."
+              "Olá, Dra. Roberta Veiga! Gostaria de tirar uma dúvida sobre meu caso criminal."
             )}
             target="_blank"
             rel="noreferrer"
-            aria-label="Falar agora pelo WhatsApp com a Dra. Gisele Ferreira"
+            aria-label="Falar agora pelo WhatsApp 24h com a Dra. Roberta Veiga"
             className="group relative flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"
           >
             <WhatsAppIcon size={28} />
             <span className="pointer-events-none absolute right-16 hidden whitespace-nowrap rounded-lg bg-brand-950 px-3.5 py-1.5 text-xs font-semibold text-white shadow-lg transition-opacity group-hover:block">
-              Falar no WhatsApp
+              Plantão 24h WhatsApp
             </span>
           </a>
         </aside>
@@ -1697,7 +1732,7 @@ export default function Home() {
                   <X size={18} />
                 </button>
 
-                <p className="eyebrow">ESPECIALIDADE JURÍDICA</p>
+                <p className="eyebrow">ESPECIALIDADE JURÍDICA CRIMINAL</p>
 
                 <h2
                   id="area-dialog-title"

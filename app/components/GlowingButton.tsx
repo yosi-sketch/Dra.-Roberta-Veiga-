@@ -38,26 +38,26 @@ export default function GlowingButton({
     lg: "px-7 py-4 text-xs tracking-[0.14em]",
   }[size];
 
-  // Metallic deep burgundy and luxury rose gold gradients matching Gisele Ferreira visual identity
+  // Metallic ruby wine and warm gold gradients matching Dra. Roberta Veiga visual identity
   const variantClasses = {
     burgundy:
-      "border border-rose-300/30 bg-gradient-to-r from-brand-700 via-brand-600 to-brand-700 text-white font-bold shadow-md shadow-brand-900/35 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-burgundy",
+      "border border-brand-400/30 bg-gradient-to-r from-brand-700 via-brand-600 to-brand-700 text-white font-bold shadow-md shadow-brand-950/35 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-burgundy",
     rosegold:
-      "border border-gold-300/50 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-white font-bold shadow-md shadow-brand-950/25 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-rosegold",
+      "border border-gold-300/50 bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 text-white font-bold shadow-md shadow-brand-950/25 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-gold",
     copper:
-      "border border-rose-300/30 bg-gradient-to-r from-brand-700 via-brand-600 to-brand-700 text-white font-bold shadow-md shadow-brand-900/35 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-burgundy",
+      "border border-brand-400/30 bg-gradient-to-r from-brand-700 via-brand-600 to-brand-700 text-white font-bold shadow-md shadow-brand-950/35 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-burgundy",
     bronze:
-      "border border-rose-400/40 bg-gradient-to-r from-brand-800 via-brand-700 to-brand-800 text-white font-bold shadow-md shadow-brand-950/40 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-burgundy",
+      "border border-brand-500/40 bg-gradient-to-r from-brand-800 via-brand-700 to-brand-800 text-white font-bold shadow-md shadow-brand-950/40 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-burgundy",
     platinum:
-      "border border-brand-300/60 bg-gradient-to-r from-brand-100 via-white to-brand-200 text-brand-950 font-bold shadow-md shadow-brand-950/15 hover:-translate-y-0.5 hover:shadow-burgundy hover:brightness-105",
+      "border border-brand-200 bg-gradient-to-r from-brand-50 via-white to-brand-100 text-brand-950 font-bold shadow-md shadow-brand-950/15 hover:-translate-y-0.5 hover:shadow-burgundy hover:brightness-105",
     silver:
-      "border border-brand-300/60 bg-gradient-to-r from-brand-100 via-white to-brand-200 text-brand-950 font-bold shadow-md shadow-brand-950/15 hover:-translate-y-0.5 hover:shadow-burgundy hover:brightness-105",
+      "border border-brand-200 bg-gradient-to-r from-brand-50 via-white to-brand-100 text-brand-950 font-bold shadow-md shadow-brand-950/15 hover:-translate-y-0.5 hover:shadow-burgundy hover:brightness-105",
     champagne:
-      "border border-gold-300/60 bg-gradient-to-r from-brand-50 via-gold-200 to-brand-100 text-brand-950 font-bold shadow-sm hover:-translate-y-0.5 hover:shadow-burgundy hover:brightness-105",
+      "border border-gold-300/60 bg-gradient-to-r from-gold-50 via-gold-100 to-gold-200 text-brand-950 font-bold shadow-sm hover:-translate-y-0.5 hover:shadow-gold hover:brightness-105",
     dark:
-      "border border-brand-700/50 bg-brand-950 text-brand-100 shadow-sm shadow-brand-950/40 hover:-translate-y-0.5 hover:border-brand-400 hover:bg-brand-900 hover:text-white hover:shadow-burgundy",
+      "border border-brand-700/50 bg-brand-950 text-brand-100 shadow-sm shadow-brand-950/40 hover:-translate-y-0.5 hover:border-gold-400 hover:bg-brand-900 hover:text-white hover:shadow-burgundy",
     gold:
-      "border border-amber-300/50 bg-gradient-to-r from-brand-700 via-brand-600 to-brand-700 text-white font-bold shadow-md shadow-brand-900/35 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-burgundy",
+      "border border-gold-300/60 bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 text-white font-bold shadow-md shadow-brand-950/30 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-gold",
     outline:
       "border border-brand-700/50 bg-transparent text-brand-900 hover:-translate-y-0.5 hover:border-brand-800 hover:bg-brand-50 hover:text-black",
     white:

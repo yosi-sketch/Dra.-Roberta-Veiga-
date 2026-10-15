@@ -1,32 +1,32 @@
-# GISELE FERREIRA ADVOGADA
-## Advocacia Especializada em Direito de Família e Sucessões, Previdenciário (INSS), Cível e Consumidor · Nova Serrana - MG
+# DRA. ROBERTA VEIGA ADVOCACIA
+## Advocacia Criminal Especializada · Especialista em Execução Penal · Rio Pomba - MG (OAB/MG 210.863)
 
 ## Plataforma
-Site institucional e landing page responsiva de altíssimo padrão desenvolvida em Next.js 16 (App Router) e Tailwind CSS v4, projetada para transmitir autoridade jurídica, combatividade, acolhimento humano, transparência e rigor técnico, com navegação fluida, modais interativos para detalhamento de áreas de atuação e integração direta com WhatsApp e Google Maps.
+Site institucional e landing page responsiva de altíssimo padrão desenvolvida em Next.js 16 (App Router) e Tailwind CSS v4, projetada para transmitir autoridade jurídica inabalável, combatividade técnica, clareza desmistificada, acolhimento humano e rigor estratégico, com navegação fluida, modais interativos para detalhamento das áreas de atuação criminal e integração direta com WhatsApp e Google Maps.
 
 ## Público
-Famílias e pessoas físicas necessitando de divórcios, inventários ágeis em cartório ou judiciais, pensão alimentícia, guarda e planejamento sucessório; trabalhadores e segurados buscando aposentadorias, auxílios e BPC/LOAS no INSS; cidadãos lesados por negativações indevidas, fraudes bancárias ou quebras contratuais em Nova Serrana, Minas Gerais e em todo o território nacional.
+Pessoas físicas e familiares de custodiados que necessitam de intervenção urgente em prisões em flagrante, audiências de custódia, revogação de prisão preventiva, habeas corpus e, sobretudo, em Execução Penal (progressão de regime, liberdade antecipada, livramento condicional, remição de pena, saídas temporárias e revisão de cálculos) em Rio Pomba, Ubá, Juiz de Fora, Minas Gerais e em todo o território nacional.
 
 ## Objetivo
-Apresentar a advocacia de excelência liderada pela Dra. Gisele Ferreira, sediada na R. Europa, 176 - Belvedere, Nova Serrana - MG, evidenciando a expressiva nota de 4,9 estrelas com 12 avaliações no Google Meu Negócio, e viabilizando o contato direto e consultoria imediata via WhatsApp.
+Apresentar a advocacia de excelência liderada pela Dra. Roberta Veiga (Roberta Andrade Veiga Medeiros, OAB/MG 210.863), sediada na Rua Floripes Maria de Jesus, nº 15 – Loja 1, Centro, Rio Pomba - MG, evidenciando a nota máxima de 5,0 estrelas com mais de 114 avaliações reais no Google Meu Negócio, e viabilizando o contato imediato via WhatsApp 24 horas.
 
 ## Identidade Visual
-- Marca: Gisele Ferreira Advogada
-- Logotipo: Brasão clássico com balança da justiça e monograma "GF" em ouro rosé metálico e vinho marsala, acompanhado da tipografia serifada imperial "GISELE FERREIRA" (`public/logo-gisele-ferreira.png`, `public/logo.png`, `public/Logotipo Jurídico Gisele Ferreira.png`).
+- Marca: Dra. Roberta Veiga (Roberta Andrade Veiga Medeiros)
+- Logotipo: Balança geométrica estilizada em vinho carmim nobre com facetas tridimensionais e coluna em grafite escuro, tipografia de alta autoridade serifada imperial e registro "OAB/MG 210.863" em dourado metálico quente (`public/logo.png`, `public/logo-light.png`).
 - Paleta extraída diretamente do novo logo oficial:
-  - Vinho Marsala Nobre (`#621523`, `#7D2336`, `#480E1A`, `#330A12`)
-  - Ouro Rosé & Champanhe Rosé Metálico (`#C68478`, `#D29084`, `#E4AE9C`, `#F6DDD4`, `#9C4E48`)
-  - Preto Ônix / Obsidian Dark (`#180509`, `#1A080C`)
-  - Pérola e Marfim Nobre acolhedor (`#FAF6F5`, `#FBF7F6`, `#F6ECE9`)
-- Tipografia: Cormorant Garamond nos títulos (serifada elegante, clássica e de alta autoridade, alinhada à marca) e Plus Jakarta Sans para leitura clara, moderna e acessível no corpo de texto.
-- Tom de voz: Acolhedor, combativo, transparente, preciso e resolutivo.
+  - Vinho Carmim / Ruby Wine Nobre (`#80142B`, `#670C1E`, `#4F0816`, `#9E2D40`, `#36040E`)
+  - Ouro Quente Metálico OAB (`#C08F27`, `#D4AF63`, `#AA791B`, `#E5CB95`, `#FAF3E5`)
+  - Preto Ônix / Obsidian Dark (`#140306`, `#1A060A`)
+  - Pérola e Marfim Acolhedor (`#FAF7F5`, `#FCF8F8`, `#F8EEEE`)
+- Tipografia: Cormorant Garamond nos títulos (serifada de alta distinção, clássica e imponente) e Plus Jakarta Sans para leitura límpida, moderna e descomplicada no corpo de texto.
+- Tom de voz: Firme, estratégico, transparente, acolhedor, sem juridiquês inútil ("aqui tem clareza, estratégia e compromisso real com cada caso").
 
 ## Conteúdo e Mídia
-- Logotipo oficial em alta definição (`public/logo-gisele-ferreira.png`, `public/logo.png`).
-- Foto hero: Dra. Gisele Ferreira no escritório com laptop e livro de Direito de Família (`public/dra-gisele-ferreira-mesa.png`, `public/hero.png`).
-- Foto sobre: Dra. Gisele Ferreira em traje social preto elegante (`public/dra-gisele-ferreira-perfil.png`, `public/sobre.png`).
-- Endereço físico: R. Europa, 176 - Belvedere, Nova Serrana - MG, 35526-720, Brasil.
-- Telefone / WhatsApp: (37) 99164-2670.
-- Redes Sociais: Instagram @gisele.fferreiraadv (https://www.instagram.com/gisele.fferreiraadv/).
-- Horário de funcionamento: Segunda a Sexta-feira das 08:00 às 18:00.
-- Prova social: 4,9 estrelas com 12 avaliações no Google Meu Negócio.
+- Logotipo oficial em alta definição (`public/logo.png` e `public/logo-light.png`).
+- Foto hero & sobre: Apresentação oficial e retrato de Dra. Roberta Veiga (`public/roberta-veiga.png`, `public/roberta-portrait.png`).
+- Foto endereço e sede: Prédio comercial da nova sede (`public/escritorio-endereco.png`).
+- Endereço físico: Rua Floripes Maria de Jesus, nº 15 – Loja 1, Centro, Rio Pomba - MG, CEP 36180-000 (Esquina com a Rua João Marcelino, ao lado do LABCLIN, em frente à Autoescola Rio Pomba).
+- Telefone / WhatsApp: (32) 99909-7028.
+- Redes Sociais: Instagram @ravgms.adv (https://www.instagram.com/ravgms.adv).
+- Horário de funcionamento: Plantão Criminal 24 Horas / Aberto 24 horas.
+- Prova social: 5,0 estrelas com 114 avaliações no Google Meu Negócio.
